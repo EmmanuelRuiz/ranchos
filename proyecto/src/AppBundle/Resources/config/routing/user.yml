@@ -1,0 +1,23 @@
+login:
+    path: /login
+    defaults: { _controller: AppBundle:User:login }
+
+login_check:
+    path: login
+
+logout:
+    path: /login_check
+
+register:
+    path: /register
+    defaults: { _controller: AppBundle:User:register }
+
+user_email_test:
+    path: /email-test
+    defaults: { _controller: AppBundle:User:emailTest }
+    methods: [POST]
+
+user_edit:
+    path: /my-data
+    defaults: { _controller: AppBundle:User:editUser }
+
