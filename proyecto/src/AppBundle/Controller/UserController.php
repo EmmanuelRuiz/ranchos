@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\Session\Session;
 use BackendBundle\Entity\User;
 use AppBundle\Form\UserType;
@@ -23,7 +22,7 @@ class UserController extends Controller {
         $this->session = new Session();
     }
 
-    public function loginAction(Request $request, AuthenticationUtils $authenticationUtils) {
+    public function loginAction(Request $request) {
         //si el if nos devuelve un objeto que redirija a home
         // pues el usuario esta logueado
         if (is_object($this->getUser())) {
@@ -35,7 +34,7 @@ class UserController extends Controller {
         //en firewalls menu indicamos las rutas
         //en backendbundle/entity/user.php se configura userinterface
         //cargar servicio de autenticacion de symfony
-        //$authenticationUtils = $this->get('security.authentication_utils');
+        $authenticationUtils = $this->get('security.authentication_utils');
 
         //guardar si hubo un error
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -50,10 +49,10 @@ class UserController extends Controller {
     public function registerAction(Request $request) {
         //si el if nos devuelve un objeto que redirija a home
         // pues el usuario esta logueado        
-        if (is_object($this->getUser())) {
+        /*if (is_object($this->getUser())) {
             return $this->redirect('/admin/');
         }
-
+        */
 
         //Usamos el objeto user y el formulario, hay que incluirlos en el namespace
         $user = new User();

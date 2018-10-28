@@ -3,10 +3,10 @@ login:
     defaults: { _controller: AppBundle:User:login }
 
 login_check:
-    path: login
+    path: /login_check
 
 logout:
-    path: /login_check
+    path: /logout
 
 register:
     path: /register
