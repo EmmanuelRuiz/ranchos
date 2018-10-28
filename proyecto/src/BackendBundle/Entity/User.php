@@ -2,10 +2,13 @@
 
 namespace BackendBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * User
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @var integer
@@ -53,6 +56,50 @@ class User
     private $updatedAt;
 
 
+    
+    //metodo para indicar que campo de la bd va a actuar como username
+    //esto es para el formulario del login
+    public function getUsername() {
+        return $this->email;
+    }
+
+    public function getSalt() {
+        return null;
+    }
+
+    public function getRoles() {
+        return array('ROLE_USER', 'ROLE_ADMIN');
+    }
+    /*
+    public function getPassword() {
+        return $this->password;
+    }
+*/
+    public function eraseCredentials() {
+        
+    }
+
+    public function __toString() {
+        return $this->name;
+    }
+
+    public function serialize() {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password
+        ));
+    }
+
+    public function unserialize($serialized) {
+        list(
+                $this->id,
+                $this->email,
+                $this->password
+                ) = unserialize($serialized);
+    }
+    
+    
     /**
      * Get id
      *
