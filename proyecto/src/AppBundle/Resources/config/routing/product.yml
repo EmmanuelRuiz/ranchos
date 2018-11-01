@@ -1,7 +1,0 @@
-home_products:
-    path: /home
-    defaults: { _controller:AppBundle:Product:index }
-
-product_search:
-    path: /search
-    defaults: { _controller:AppBundle:Product:search }

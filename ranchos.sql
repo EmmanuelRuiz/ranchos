@@ -1,11 +1,11 @@
 CREATE DATABASE IF NOT EXISTS ranchos;
 USE ranchos;
 
-CREATE TABLE people(
-id			int(255) auto_increment not null,
+CREATE TABLE users(
+id		int(255) auto_increment not null,
 role		varchar(20),
-name		varchar(20),
-lastname	varchar(50),
+name		varchar(15),
+lastname	varchar(30),
 email		varchar(50),
 password	varchar(255),
 image		varchar(255),
@@ -17,7 +17,7 @@ CONSTRAINT pk_users PRIMARY KEY(id)
 CREATE TABLE categories(
 id			int(255) auto_increment not null,
 name		varchar(20),
-description	varchar(500),
+description	text,
 created_at	datetime DEFAULT NULL,
 CONSTRAINT pk_category PRIMARY KEY(id)
 )ENGINE=InnoDb DEFAULT CHARSET=utf8;
@@ -26,7 +26,7 @@ CREATE TABLE products(
 id				int(255) auto_increment not null,
 user_id			int(255) not null,
 category_id		int(255) not null,
-product_name	varchar(20),
+product_name            varchar(20),
 description		text,
 image			varchar(255),
 available		varchar(5),
