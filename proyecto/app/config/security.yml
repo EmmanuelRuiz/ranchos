@@ -7,6 +7,12 @@ security:
             cost: 4
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
+        in_memory:
+            memory:
+                users:
+                    admin:
+                        password: admin
+                        roles: 'ROLE_ADMIN'
         user_db_provider:
             entity:
                 class: BackendBundle:User
@@ -17,6 +23,22 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        
+        admin:
+            pattern:   ^/admin
+            anonymous: ~
+            provider: in_memory
+            form_login:
+                login_path: /admin/login
+                check_path: /admin/login_check
+                default_target_path: /admin/panel
+                target_path_parameter: redirect_url
+                always_use_default_target_path: false
+
+
+            logout:
+                path: /admin/logout
+                target: /admin/login
 
         main:
             anonymous: ~
@@ -35,3 +57,5 @@ security:
 
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    #access_control:
+    #    - { path: ^/admin/panel, roles: ROLE_ADMIN }

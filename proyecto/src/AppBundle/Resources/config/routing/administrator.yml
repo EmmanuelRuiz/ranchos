@@ -3,5 +3,16 @@ user_list:
     defaults: { _controller: AppBundle:Administrator:users }
 
 home_admin:
-    path: /admin/
+    path: /admin/panel
     defaults: { _controller: AppBundle:Administrator:index }
+
+
+administrator_login:
+    path: /admin/login
+    defaults: { _controller: AppBundle:Administrator:login }
+
+administrador_login_check:
+   path: /admin/login_check
+   
+administrador_logout:
+   path: /admin/logout

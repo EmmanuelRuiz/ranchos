@@ -88,7 +88,8 @@ class User implements UserInterface, \Serializable
         return serialize(array(
             $this->id,
             $this->email,
-            $this->password
+            $this->password,
+             $this->salt,
             // see section on salt below
             // $this->salt,
         ));
@@ -100,10 +101,11 @@ class User implements UserInterface, \Serializable
         list (
             $this->id,
             $this->email,
-            $this->password
+            $this->password,
+                $this->salt,
             // see section on salt below
             // $this->salt
-        ) = unserialize($serialized);
+        ) = unserialize($serialized, array('allowed_classes' => false));
     }
     
     

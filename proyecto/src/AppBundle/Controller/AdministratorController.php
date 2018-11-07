@@ -57,6 +57,10 @@ class AdministratorController extends Controller {
                 
                 if ($flush == null) {
                     $status = "El producto se guardó correctamente.";
+                                $this->session->getFlashBag()->add("status", $status);
+
+                                            return $this->redirect("/admin/panel");
+
                 } else {
                     $status = "Error al guardar el producto.";
                 }
@@ -89,6 +93,10 @@ class AdministratorController extends Controller {
         return $this->render('AppBundle:Administrator:users.html.twig', array(
                     'pagination' => $pagination
         ));
+    }
+    
+    public function loginAction(Request $request) {
+        return $this->render('AppBundle:Administrator:login.html.twig');
     }
 
 }

@@ -63,8 +63,7 @@ class UserController extends Controller {
         //ya no toca vincular los datos que llegan individualmente con ->set...
         $form->handleRequest($request);
         //validar si llega el form
-        dump($form);
-                die(); 
+       
         if ($form->isSubmitted()) {
             
             if ($form->isValid()) {
